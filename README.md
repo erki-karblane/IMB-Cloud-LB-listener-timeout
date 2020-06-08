@@ -1,6 +1,10 @@
 # IMB-Cloud-LB-listener-timeout
 This is a Python3 script to change IBM Cloud loadbalancer timeout settings
-Your goint to need to have Softplayer imported to Your python, and a IBM vpn username along with your classical infrastructure API key with currect user rights.
+Your goint to need to have Softplayer imported to Your python, and a IBM vpn username along with your classical infrastructure API key with currect user rights. To use the correct credentials:
+
+Set an api username and apikey as following for each example in case you don't have a ~/.softlayer file configured in your environment.
+
+    client = SoftLayer.Client(username='set me', api_key='set me')
 
 The script itself:
 
