@@ -3,10 +3,10 @@ This is a Python3 script to change IBM Cloud loadbalancer timeout settings
 Your goint to need to have Softplayer imported to Your python, and a IBM vpn username along with your classical infrastructure API key with currect user rights.
 
 The script itself:
-import SoftLayer
-from pprint import pprint
+    import SoftLayer
+    from pprint import pprint
 
-# Your load balancer UUID
+    # Your load balancer UUID
 uuid = 'Your load balancer UUID or UUI if You are using SLCLI'
 
 # New protocols to add
