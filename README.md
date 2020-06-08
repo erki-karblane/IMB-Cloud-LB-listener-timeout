@@ -38,28 +38,33 @@ The script itself:
         print("Unable to add protocols: %s, %s" % (e.faultCode, e.faultString))
 ---------------------------------------------------
 How to get information regarding your current setup:
+
   Using SLCLI:
+
     slcli loadbal list
-    slcli loadbal detail id
-      The ID here is a 6 ficure number
-   The problem with the slcli tool is that this does not show or change the timeout settings. You need pyhton scripts.
-   To see the current values, use the python script below:
+    
+        slcli loadbal detail id
+        The ID here is a 6 ficure number
    
-import SoftLayer
-from pprint import pprint
+The problem with the slcli tool is that this does not show or change the timeout settings. You need pyhton scripts.
+To see the current values, use the python script below:
+   
+    import SoftLayer
 
-# Your load balancer UUID
-uuid = 'UUID of Your loadbalancer'
-# mask to retrieve the load balancer's listeners and healthMonitors
-_mask = "mask[listeners, healthMonitors]"
+    from pprint import pprint
 
-# Create the api client
-client = SoftLayer.Client()
-lbaas_service = client['Network_LBaaS_LoadBalancer']
+    # Your load balancer UUID
+    uuid = 'UUID of Your loadbalancer'
+    # mask to retrieve the load balancer's listeners and healthMonitors
+    _mask = "mask[listeners, healthMonitors]"
 
-try:
-    # Retrieve a specific load balancer object
-    details = lbaas_service.getLoadBalancer(uuid, mask=_mask)
-    pprint(details)
-except SoftLayer.SoftLayerAPIError as e:
-    print("Unable to retrieve LBaaS details: %s, %s" % (e.faultCode, e.faultString))
+    # Create the api client
+    client = SoftLayer.Client()
+    lbaas_service = client['Network_LBaaS_LoadBalancer']
+
+    try:
+        # Retrieve a specific load balancer object
+        details = lbaas_service.getLoadBalancer(uuid, mask=_mask)
+        pprint(details)
+    except SoftLayer.SoftLayerAPIError as e:
+        print("Unable to retrieve LBaaS details: %s, %s" % (e.faultCode, e.faultString))
