@@ -79,31 +79,31 @@ To see the current values, use the python script below:
 -------------------------------------------------------------
 How to add a L7 rule to a load balancer (listener)
 
-import SoftLayer
-from pprint import pprint
+    import SoftLayer
+    from pprint import pprint
 
-# UUID of the HTTP listener
-listener_uuid = "18996791-9e06-436b-bcf8-ba4a849af723"
+    # UUID of the HTTP listener
+    listener_uuid = "18996791-9e06-436b-bcf8-ba4a849af723"
 
-# Bulk rules configuration
-policies_rules = [
-    {
-        "l7Policy": {
-            "name": "redirect-to-HTTPS",
-            "action": "REDIRECT_HTTPS",
-            "priority": 101,
-# Redirect the http to https listener UUID
-            "redirectUrl": "fcd21b75-236b-41e5-ac10-db6e63d75078"
+    # Bulk rules configuration
+    policies_rules = [
+        {
+            "l7Policy": {
+                "name": "redirect-to-HTTPS",
+                "action": "REDIRECT_HTTPS",
+                "priority": 101,
+    # Redirect the http to https listener UUID
+                "redirectUrl": "fcd21b75-236b-41e5-ac10-db6e63d75078"
+            }
         }
-    }
-]
+    ]
 
-client = SoftLayer.Client()
-networkLBaaSL7PolicyService = client['SoftLayer_Network_LBaaS_L7Policy']
+    client = SoftLayer.Client()
+    networkLBaaSL7PolicyService = client['SoftLayer_Network_LBaaS_L7Policy']
 
-try:
-    result = networkLBaaSL7PolicyService.addL7Policies(listener_uuid, policies_rules)
-    pprint(result)
-except SoftLayer.SoftLayerAPIError as e:
-    print("Unable to addL7Policies: %s, %s " % (e.faultCode, e.faultString))
+    try:
+        result = networkLBaaSL7PolicyService.addL7Policies(listener_uuid, policies_rules)
+        pprint(result)
+    except SoftLayer.SoftLayerAPIError as e:
+        print("Unable to addL7Policies: %s, %s " % (e.faultCode, e.faultString))
 
